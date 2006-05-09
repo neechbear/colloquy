@@ -1,0 +1,5 @@
+Usage: .Guest <username>
+
+Changes a user's effective user to 'guest'.  This is helpful to
+get around their connection timing out if they're a normal
+guest.  The user 'guest' must exist.

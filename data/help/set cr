@@ -1,0 +1,4 @@
+Usage: .set cr on|off
+ 
+Changes what is sent at the end of lines between CRLF and LF.
+Basically, if one setting doesn't work, try the other.

@@ -1,0 +1,4 @@
+Usage: .Kick <user> [<reason>]
+
+Kicks somebody off the talker, with an optional reason.  You should
+give a reason, either with .Kick, or .Warn before hand.

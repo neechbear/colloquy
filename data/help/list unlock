@@ -1,0 +1,3 @@
+Usage: .list unlock <listname>
+
+Unlocks a previously locked lists.

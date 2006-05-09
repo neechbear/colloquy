@@ -1,0 +1,3 @@
+Usage: .idle [<reason>]
+
+Marks you as idle, giving an optional reason.

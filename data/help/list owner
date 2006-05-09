@@ -1,0 +1,3 @@
+Usage: .list owner <listname> <username>
+
+Transfer ownership of a list to another user.

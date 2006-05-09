@@ -1,0 +1,5 @@
+Usage: .Quit [<message>]
+
+Exits from the talker. Obvious really :-)
+If you specify a message, it will be appended to your disconnection
+message.

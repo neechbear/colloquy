@@ -1,0 +1,3 @@
+Usage: .banuser <user> <reason>
+
+Bans a user from using the talker.  You must give a reason.

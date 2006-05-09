@@ -1,0 +1,5 @@
+Usage: .Set IdlePrompt <Prompt|->
+
+Allows you to set a custom string to use in the talker's prompt when
+you are idling.  It must be 10 or fewer characters.  Set it to - to
+unset it and use the talker's default choice.

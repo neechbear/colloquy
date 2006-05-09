@@ -1,0 +1,3 @@
+Usage: .List Master <listname> <username>
+
+Makes a user a list master, so they can do everything an owner can.

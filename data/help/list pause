@@ -1,0 +1,12 @@
+Usage: .list pause [<listname>]
+
+Pauses a list, so that you are not sent conversation from it.  If you
+try to talk to a paused list, it will be automatically unpaused for
+you.  If you don't specify a list name, it tells you which lists
+you have paused.
+Usage: .list pause [<listname>]
+
+Pauses a list, so that you are not sent conversation from it.  If you
+try to talk to a paused list, it will be automatically unpaused for
+you.  If you don't specify a list name, it tells you which lists
+you have paused.

@@ -1,0 +1,4 @@
+Usage: .Lists [<list>]
+
+Display information about available lists, or if a list name is given,
+additional information about that list.

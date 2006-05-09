@@ -1,0 +1,8 @@
+Usage: .set width <terminal width | auto>
+
+Allows you to select the width of the terminal you are using.
+Auto attempts to determine the screen size automagically, but will
+only work on 'colour' terminals.  Also, if you set the width to 0,
+the talker will not wrap lines of text to you.  (Although tabular
+information will be formatted to the default 79 characters.)
+

@@ -1,0 +1,244 @@
+RK 2002-03-23 Implemented aliases, and allowed contraction of aliases.
+RK 2002-04-24 DONETELL tag coloured as 'tell' 
+              Adjusted how the CPU usage was shown in .stats
+              Guest users can no-longer use .request
+              Corrected spelling mistake in .userinfo
+              Changed how updated versions are sent to salmon.
+RK 2002-04-25 You're-being-spoken-about highlighting added.  If somebody
+               says something in the current group that contains your
+               username or one of your aliases, their name is highlighted
+               at the beginning of the line.  .set colour nick to change.
+RK 2002-04-26 Added the ability to give .who a group to limit the list to,
+               and added the alias .gwho for users of other talkers who
+               are easily confused.
+              Changed default nick highlight to BrWhite from BrWrite :)
+              Using .set colour on its own now lists the current values.
+RK 2002-04-27 Added emoted shouts, using !: or !;
+RK 2002-04-30 Masters are now told when a user connects/disconnects
+               invisibly.
+              Added prompts. If your client supports them, you can turn
+               them on using .set prompts on
+              Added some crude telnet negotiation munching.
+RK 2002-05-01 Added .pemote (with a shorthand ::) and made the space on
+               remoted whispers get munched if the first character was
+               punctuation.
+              Added munching of punctuation to .emote, too.
+              Added pemoted shouts with !::
+              Implemented .login - It's a bit of a bodge, so people need
+               to experiment.
+RK 2002-05-02 Added initial group at the login line, in the format:
+               username@group password
+              Message sent to all users when a .warn is issued now
+               capitalises the warnee's name as they're logged on, rather
+               than how the warner typed it.
+              Changed *lots* of bits to enable some form of CLIENT mode.
+RK 2002-05-03 .name now changes the prompt to reflect their new name
+               straight away.
+              .set on its own no-longer says "unknown command."
+              .name can now be used to change the case of a user's name.
+              Added comments, via .comment and .comments
+              Added background colours, and simplified the colouring
+               stuff generally.
+              Enabled infinite idling, as a config option.
+              Forcing somebody no-longer affects their current idle time.
+              Added .idle command.
+RK 2002-05-09 Fixed environment calculation so it doesn't leave a zombie.
+              Should hopefully be able to cope better with \n in packets.
+              Done some little bits to hopefully reduce CPU time usage.
+              Wrapping is now done before colouring to avoid apparently
+               silly things being wrapped when they shouldn't.
+              Your own name is no-longer highlighted when you .emote
+              Generally tidied up the message formatting.
+RK 2002-05-14 Added multitells, and .reply
+              Fixed the read function to cope better with things that
+               send characters one at a time, rather than line at a time.
+              Implemented remote echo.
+RK 2002-06-19 Too many changes to fully mention - speed ups, censors etc.
+RK 2002-06-20 Added automatic age calculation for .info
+              Added .showlog command for masters
+              Added talker name to .stats and .who
+RK 2002-06-28 Speed up secs() function by using cached value.
+              Rewrote .who - now much quicker, and gives more info.
+              New connections now have CR turned on by default.
+              Speed up normal talk formating.
+              You're no-longer told which group somebody connected in if
+               it is the same group as you.
+              Lists!  .help list, for more information.
+              Fixed wrap indent value for .info
+              Lockable groups, invitations.
+RK 2002-06-30 Fixed .groups formating.
+              .lists now has two lists, one for locked, and one for
+               unlocked.
+              .info's list of users is now formatted into columns.
+              .lists' list of lists is now in alphabetaical order.
+RK 2002-07-01 You no-longer see your own connection message when you
+               connect. :)
+              Added happy-birthday thingies 'cause I was bored.
+              Added nick highlighting to lists.
+              You now get told when you whisper to a list you're not
+               a member of.
+RK 2002-07-02 .who/.gwho is now sorted nicely.
+              You can now use .set info to change some of your .info
+              Moved things around in .info to make a little more sense.
+              A user's list subscriptions is now sorted in .info
+RK 2002-07-05 Lists can now have hyphens in their names.
+              Fixed bug with .who when there were invisible users.
+              Wording of the .who/.gwho header is now more sensible.
+              Certian strange people complained that "> foo moo" didn't
+               work as they expected.  Now it does.
+              Masters are treated as owners on lists they subscribe to.
+              .examine now tells you how idle somebody is, even if they're
+               marked "very idle"
+              Implemented .idlers for Rick.
+              Users who are idle now get square brackets in .look
+RK 2002-07-06 Rewrote .lists to be slightly nicer.
+RK 2002-07-07 .list pause and unpause implemented
+              .evict from groups implemented, with E priv.
+RK 2002-07-12 You can no-longer .name people to invalid names.
+              Extensive priviledge logging changes.
+              .banuser now suffixes the reason with the user's real name,
+               not what they're logged in with currently.
+              Added log rotation.
+              You can now use certain commands at the login prompt.
+              Windows/Cygwin so I can do stuff on my laptop.
+RK 2002-07-15 Now shows you your settings when you log on.
+              You can now turn off shouts, connection messages and lists
+               by using .set [shouts|messages|lists] [on|off]
+              Lots of under-the-bonet changes.
+RK 2002-07-19 Locked groups are now unlocked when the last user leaves it.
+              You can nolonger log into a locked group using the intial
+               group function.
+              Tracking of locked groups and invitations is now done using
+               the "right way" rather than the "very wrong way."
+RK 2002-07-20 Did the same for < as on 2002-07-05        
+              Added .query for usernames, @groups and %lists.
+              ">@ " and "<@ " now send to your current group (to escape 
+               .query)
+RK 2002-07-24 Added banning of hosts
+              Rewrote command parser - much quicker now.
+RK 2002-07-26 User database fields are now properly escaped when saved!
+              The new parser now checks if you're allowed to execute a
+               command ;-)
+              Upgraded LVM to Lua 4.0.1.
+RK 2002-07-29 Tweaked nick name contraction expansion.
+RK 2002-08-05 New build system, more portable.
+RK 2002-08-06 Frobbed tell and remote.  You can now use contractions of
+               group names, and will error if you include a groupname
+               twice in multitells.
+              .shout now has a usage message.
+              .invite now accepts multiple users.
+              New .motd command that displays the message of the day.
+RK 2002-08-10 Added .ignore and .unignore
+RK 2002-08-11 Re-arranged fields in .list info to be more easily read.
+              Users from hosts that cannot be reverse resolved may now
+               log on as guests.
+              You can no longer force guest users off with *
+              .look can now take a group name to look in.
+              When a master merges a group, a sensible message is sent.
+              A user is now told when you ignore/unignore them, unless
+               you suffix "silently" to the command.
+RK 2002-08-13 .wake can now take username contractions.
+              Updated command names to make them easier to read in .help
+              Fixed some grammatical errors in talker messages.
+RK 2002-08-15 Much faster selectory, general optimisations here and here.
+              Fixed a possible security hole.
+RK 2002-08-28 Added "Talk Bytes" to .info, which keeps track of the number
+               of bytes that a user has spoken in a group.
+              Stopped prompts using colour during a .query, even if the
+               terminal type was set to "Dumb".
+              .PEmote now has a usage message, and you can now pemote
+               inside a query without escapeing from it.
+              Multitells can now have spaces between entries, so the form:
+               >@public, -ogg, bob, cheese Hello!
+               are now possible.  If there is a space, it must appear
+               after the comma and not before.
+              Group names can no-longer have commas in them in order to
+               make the above possible.
+              Some general tidying around the place.
+RK 2002-08-29 Optimised a real CPU time eater: the colouring system.
+              Made the data send/read bits in .stats use prettyBytes().
+RK 2002-08-30 Made a few little optimisations here and there.
+              Few misc. changes that I can't remember.
+RK 2002-09-08 If a guest connects, it says they're a guest.
+RK 2002-09-09 Did some tidying in .list info
+              Added memory usage of currently existing objects in .stats
+              Lists now expire after 4 weeks, unless made permanent by a
+               master.
+RK 2002-09-19 Connections can now generate a beep.
+RK 2002-02-23 Idle users are now displayed in .list info with the use of
+               square brackets, and people who have the list paused with
+               round brackets.
+RK 2002-09-24 A user can now only have 5 non-permenant lists.
+              Rewrote .ungag to be cleaner, and fixed a problem where you
+               could ungag yourself.
+RK 2002-09-27 Commands now only start with one dot - if two dots are seen,
+               it is considered a say.
+RK 2002-10-05 Removed caching from reverse resolver, 'cause it was broken.
+              Some bits to make it more Debian package friendly.
+RK 2002-10-08 Added "Bot" restriction - bots log on invisibly, and are not
+               visible in .who and .groups - use .bots to list them.
+RK 2002-10-14 Added ability to change a user's account name, and rename
+               lists.
+RK 2002-10-17 Added .set colour listname
+RK 2002-10-29 Removed .reply, as it's nolonger there.
+              Fixed Z priv anti-idling
+RK 2002-11-01 New more secure password storing.  Old style passwords
+               should get automatically upgraded as they are used.
+RK 2002-12-15 Fixed .login to accept new-style passwords.
+RK 2003-01-22 .Alert now gets logged
+RK 2003-03-13 Folded in nutta's .set width patch
+RK 2003-03-19 Added customisable quit messages, and nutta's automatic
+               terminal width detection code.
+RK 2003-03-25 Most fields in .info now have view permissions.  If the
+               first character is *, then only registered users can
+               see it.  If the first character is !, only masters can
+               see it.
+RK 2003-07-04 You can now disable wrapping with .Set Wrap
+              Wrap width saved when you disconnect.
+RK 2003-07-18 Documented .set lists, shouts and messages :)
+              Merged Kinnison's .set strip patch, for people who can't
+               cope with the sensible way of doing things.
+              New .lwho command - like .gwho, exept for lists.
+RK 2003-07-19 Added BIRTHDAY! message to unidling.
+              .who, gwho, lwho now has a * column, to indicate people
+               whose username differs from their account name.
+              Added .LastOn command to tell you when a person, or
+               all the members of a list, were last seen.
+              Automatically created users done via external
+               authenticators now get their name truncated if it is
+               more than 10 characters long, rather than just
+               refusing to let them on.
+RK 2003-07-20 New .Guest command for Masters to allow easy-logging on
+               of guest users.
+              You can now use .NameSelf to recapitalise your name.
+RK 2003-07-21 .Invite can now take a multi-user specification.
+RK 2003-07-23 Documented .Set Strip
+RK 2003-08-05 Updated .Help Privs
+RK 2003-08-21 - (dash) is nolonger valid in usernames
+RK 2003-09-01 Lower case letters in .look for idle users
+RK 2003-09-06 .Info now lists people in alphabetical order
+RK 2003-09-14 Documented .Alert
+RK 2003-09-21 Fixed error message when trying to evict list owner
+RK 2003-10-23 Internationalisation implemeneted for most strings
+RK 2003-12-01 New syntax colouring code, new "me" colour
+RK 2003-12-02 Token cache for lower latency
+RK 2004-03-02 Fudge to fix huggie's .set width 0 bug
+RK 2004-08-26 Imported colloquy into Subversion from Perforce
+RK 2004-08-27 Added support for .Set Language to return a list of choices
+              Documented .Help Set Language
+RK 2004-10-28 Added .HelpUser command with H priv
+              Users now get an error if they don't have the privs to do
+               something, rather than silence.  (Ooops.)
+RK 2004-10-29 All-new censoring
+              New .Set Idling setting
+RK 2004-11-02 Added i18n to help messages, including inheritance
+DS 2004-11-15 Using .NameSelf to recapitalise your name now works properly
+RK 2004-12-01 Fix IAC FA to IAC EOR in prompt code
+RK 2004-12-09 Masters can now invite uses to lists they're not members of
+              Prompts are generated at the end of the parser, such that
+               they update properly after .query or .nameself
+RK 2004-12-10 Users are now stored one user per file on disc
+RK 2004-12-29 Lists are now stored one list per file on disc
+RK 2005-01-04 .LWho now correctly says which list you're whoing
+               Added best part of two years' user-facing changes here :)
+RK 2005-01-16 Added .Observe and .Disregard with O priv

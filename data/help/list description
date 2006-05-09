@@ -1,0 +1,3 @@
+Usage: .list description <listname> <description>
+
+Sets the description of a list.

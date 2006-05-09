@@ -1,0 +1,6 @@
+Usage: .UserInfo <username> <field> <value>
+
+Changes a user's information.  Available fields are:
+ password name birthday location occupation interests
+ comments around homepage email sex privs username
+ authenticator quitmsg

@@ -1,0 +1,4 @@
+Usage: .idlers [<groupname>]
+
+Lists who is currently marked idle, together with how long
+they have been idle, and their reason for being idle.

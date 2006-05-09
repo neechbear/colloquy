@@ -1,0 +1,3 @@
+Usage: .unbot <user>
+
+Unflags a user as a bot.  See .help bot.

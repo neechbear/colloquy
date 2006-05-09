@@ -1,0 +1,5 @@
+Usage: .set beep on|off
+
+Allows you to turn off beeps, which are sent whenever someone
+shouts. You should turn beeps off if you are using the talker
+in the middle of an exam :-)

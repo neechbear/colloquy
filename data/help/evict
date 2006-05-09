@@ -1,0 +1,4 @@
+Usage: .evict <username>
+
+Evicts somebody from your group.  If you have the E priv, then you
+may also evict people from Public and groups that you are not in.

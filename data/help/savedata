@@ -1,0 +1,4 @@
+Usage: .SaveData [<filename>]
+
+Saves the current user database.  If a filename is given, it is saved
+there, if not, it is saved to the location specified in config.lua

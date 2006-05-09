@@ -1,0 +1,21 @@
+* Everything that happens on the talker occurs in a strict
+  uniform order.  Everybody sees the same thing.  This is
+  good for settling arguments about who said something
+  first etc :)
+* Most operations involve less typing.  For example, we have
+  ; instead of /me, > instead of /msg and < instead of
+  /describe.  Also, you can use contractions of usernames 
+  and aliases, so even less typing is involved.
+* Server + clients (ie, TinyFugue, telnet, netcat) use much
+  less CPU time and memory than ircd + BitchX.
+* People can't use your nickname.  (I concede that NickServ
+  provices this functionality.)
+* The outputted text is designed to be easily read and parsable.
+  This also involves the use of colour to 'syntax highlight' if
+  you like, rather than to make pretty.
+* Easier to police, due to the much more sophisticated privilege
+  system.
+* Easier to customise due to the simple design.
+* Talkers don't attract skript-kiddies like IRC servers do.
+* Can be accessed without a specific client.  BOFHs are likely
+  to block IRC ports.

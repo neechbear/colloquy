@@ -1,0 +1,7 @@
+Usage: .Ban [<site> <reason>]
+ 
+Allows you to ban a site (or range of sites) from using the
+talker, also providing a reason why the site is banned.
+Users with accounts can still connect from banned sites.
+Without any parameters, lists all sites in the ban list.
+Banning site '*' bans all sites from using the talker.

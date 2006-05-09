@@ -1,0 +1,3 @@
+Usage: .set privs <user> <privs>
+
+Gives someone else privs.

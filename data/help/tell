@@ -1,0 +1,10 @@
+Usage: .tell {<user>|@[group]}[,[-]{<user>|@<group>}[,...]] <message>
+
+Allows you to send a message to another user or group, or multiple
+groups and users. This can be abbreviated to just '>'.
+
+Examples:
+.tell @public Hello you lot!             -- Just tells group Public.
+.tell @public,-foo Foo smells.           -- Tells everybody but foo.
+.tell foo,bar,oink Hello!                -- Tells foo, bar, and oink.
+.tell foo Hello!                         -- Tells just foo.

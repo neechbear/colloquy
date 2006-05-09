@@ -1,0 +1,3 @@
+Usage: .list anonymous <listname>
+
+Makes a list anonymous, so the list of subscribers are not visible.

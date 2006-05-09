@@ -1,0 +1,3 @@
+Usage: .list create <listname>
+
+Creates a new list, and joins it.

@@ -1,0 +1,4 @@
+Usage: .uncensor <username>
+
+Uncensors a censored user, allowing them to use any language
+they wish.

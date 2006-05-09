@@ -1,0 +1,10 @@
+Usage: .remote {<user>|@[group]}[,[-]{<user>|@<group>}[,...]] <message>
+
+Allows you to express an emotion to another user or group, or multiple
+groups and users. This can be abbreviated to just '<'.
+
+Examples:
+.remote @public moos at you lot!           -- Just tells group Public.
+.remote @public,-foo moos.                 -- Tells everybody but foo.
+.remote foo,bar,oink moos.                 -- Tells foo, bar, and oink.
+.remote foo moos.                          -- Tells just foo.

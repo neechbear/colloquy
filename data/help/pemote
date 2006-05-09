@@ -1,0 +1,5 @@
+Usage: .pemote <emotion>
+
+Allows you to express a possessive emotion. e.g. If Piers entered
+'.pemote foot hurts', everyone in the same group as Piers would
+see 'Piers' foot hurts'. This can be abbreviated to just '::'.

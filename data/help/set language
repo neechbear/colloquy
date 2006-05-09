@@ -1,0 +1,4 @@
+Usage: .set language <language>
+
+Changes the language preference.  Don't specify one to get a list
+of available languages.

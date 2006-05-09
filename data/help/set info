@@ -1,0 +1,14 @@
+Usage: .set info <field> <value>
+
+Allows you to set the value of certian fields in your .info.  These are:
+  location   occupation  interests   comments
+  around     homepage    email
+
+If you don't specify a value, the field is emptied.
+Usage: .set info <field> <value>
+
+Allows you to set the value of certian fields in your .info.  These are:
+  location   occupation  interests   comments
+  around     homepage    email
+
+If you don't specify a value, the field is emptied.

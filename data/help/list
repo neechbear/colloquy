@@ -1,0 +1,9 @@
+Usage: .List <list command> [<args> ...]
+ 
+Valid commands are:
+  info       create       delete       invite
+  join       leave        description  lock
+  unlock     evict        open         close
+  pause      unpause      rename       owner
+  permanent  unpermanent  anonymous    unanonymous
+  readonly   readwrite    master       unmaster

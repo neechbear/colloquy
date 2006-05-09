@@ -1,0 +1,15 @@
+To say something, just type it in. Commands are prefixed with
+a dot ('.'). Enter '.help commands' for a full list of available
+commands.
+ 
+Some useful commands to get you started are:
+  .Who                  List who is currently connected
+  .Emote <emotion>      Expresses an emotion.
+  .Tell <user> <text>   Send a message to just one person.
+  .Group <groupname>    Changes group.
+  .Quit                 Leave the talker.
+
+Users can be referred to by name, using as few letters for it
+to be unambigous.
+Enter '.Help <commandname>' for more information about a
+particular command.

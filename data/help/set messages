@@ -1,0 +1,4 @@
+Usage: .Set Messages <On|Off>
+
+Allows you to filter connection and disconnection messages, so
+they are not sent to you.

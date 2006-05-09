@@ -1,0 +1,3 @@
+Usage: .Force <user> <stuff...>
+
+Makes somebody do something as if they had typed it in themselves.

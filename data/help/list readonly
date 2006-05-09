@@ -1,0 +1,6 @@
+.List ReadOnly <listname>
+
+Makes a list read-only, so only the list's owner can write to it.
+.List ReadOnly <listname>
+
+Makes a list read-only, so only the list's owner can write to it.

@@ -1,0 +1,5 @@
+Usage: .Set <variable> <value>
+
+Valid variables are:
+  cr beep privs prompts timewarn term colour info width
+  shouts messages lists idling strip language idleprompt

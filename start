@@ -1,0 +1,15 @@
+#!/bin/bash
+
+umask 0022
+cd /home/system/colloquy
+
+pid=`/bin/ps -A | grep colloquy | grep -v colloquy4 | grep -v grep 2> /dev/null | awk '{print $1}'`
+
+if [ "x$pid" == "x" ]; then
+	echo "Starting colloquy ..."
+	nohup ./colloquy &
+else
+	echo "colloquy already running with PID of $pid"
+	exit 99
+fi
+

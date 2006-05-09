@@ -1,0 +1,4 @@
+Usage: .Group [<groupname>]
+
+Allows you to change to a new group. Without a groupname, it
+returns you to group 'Public'.

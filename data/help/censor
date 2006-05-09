@@ -1,0 +1,4 @@
+Usage: .censor <username>
+
+Tries to censor a user's use of language.  List of words considered
+rude is configurable from the config.lua file.

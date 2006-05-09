@@ -1,0 +1,5 @@
+Usage: .DeleteUser <username>
+
+Deletes a user from the database.  The database is saved instantly,
+so be careful with what you try to delete.  If the user is currently
+logged on, they will remain so.

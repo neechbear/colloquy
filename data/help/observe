@@ -1,0 +1,4 @@
+Usage: .Observe [<groupname>]
+
+Starts observing another group, or lists all observations if no group
+name given.

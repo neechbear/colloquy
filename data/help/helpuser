@@ -1,0 +1,3 @@
+Usage: .HelpUser <User> <Help Topic>
+
+Shows a user a help topic.

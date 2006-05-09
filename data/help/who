@@ -1,0 +1,5 @@
+Usage: .Who [<groupname>]
+
+Lists who is connected to the talker, which group they are in, and
+where they have connected from.  Optionally limits the list to a
+specific group.

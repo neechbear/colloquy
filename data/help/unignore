@@ -1,0 +1,4 @@
+Usage: .unignore <user> [silently]
+
+Unignores a previously ignored user, and tells them,
+unless you add "silently".

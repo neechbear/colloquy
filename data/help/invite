@@ -1,0 +1,3 @@
+Usage: .invite <userspec>
+
+Invites a user to a locked group, so they can join it.

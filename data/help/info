@@ -1,0 +1,4 @@
+Usage: .Info [<user>]
+
+Displays information about a user. Without parameters, it lists
+all the users who have an entry in the information database.

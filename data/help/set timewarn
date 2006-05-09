@@ -1,0 +1,4 @@
+Usage: .set timewarn <minutes>
+
+Displays a mark with the time every <minutes> minutes.
+Setting this to 0 will turn it off.

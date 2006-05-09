@@ -1,0 +1,4 @@
+Usage: .list permanent <listname>
+
+Makes a list permanent, so it doesn't expire, and it doesn't go
+towards the owner's list quota.

@@ -1,0 +1,5 @@
+Usage: .LWho <listname>
+
+Lists who is connected to the talker and also a member of a specific
+list, which group they are in, how idle they are, and where they have 
+connected from.  

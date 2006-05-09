@@ -1,0 +1,4 @@
+Usage: .set prompts <off|on>
+
+Prompts will send prompt information for telnet clients that have
+the ability to dynamically change their prompt.  i.e., TUsh or tf.

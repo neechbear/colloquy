@@ -1,0 +1,5 @@
+Usage: .Say <text>
+
+Says some text to the people in the current group.
+Not really required, as this is the default command if
+none is given.

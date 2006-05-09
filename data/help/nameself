@@ -1,0 +1,4 @@
+Usage: .nameself [<new capitalisation>]
+
+Changes your name to the same as the user you are logged on as,
+if possible.

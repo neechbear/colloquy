@@ -1,0 +1,4 @@
+Usage: .comment [<comment>]
+
+Allows you to leave a message which gets displayed to users when
+they connect to the talker.  Use without a comment to remove it.

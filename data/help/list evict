@@ -1,0 +1,3 @@
+Usage: .list evict <listname> <username>
+
+Evicts a user from a list.

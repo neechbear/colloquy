@@ -1,0 +1,4 @@
+Usage: .Closedown
+
+Closes the talker down, disconnecting all users first. Use with
+EXTREME caution!

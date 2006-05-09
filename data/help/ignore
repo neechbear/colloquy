@@ -1,0 +1,6 @@
+Usage: .ignore [<user> [silently]]
+
+Ignores a user, so you see nothing they produce.  They
+will be told, unless you add "silently".  With no
+parameters, it lists who you are ignoring, and who is
+ignoring you.

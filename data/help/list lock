@@ -1,0 +1,3 @@
+Usage: .list lock <listname>
+
+Locks a list, so only people who have been invited can join.

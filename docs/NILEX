@@ -1,0 +1,91 @@
+Things Colloquy does that NILEX/EH doesn't
+------------------------------------------
+
+* Lists
+  - Anonymous lists
+  - Non-permanent list quotas
+  - Different colouring for list name on list talk
+  - List expiry after non-use
+  - Automatically unpauses (unignores) a list when you talk to it
+  - Lists have owners who can't leave, etc.
+  - Read-only lists (only list masters may speak.)
+  - List of lists is sorted!
+  - Tracks list creation and last use times
+  - Displays who is idle and who is ignoring lists in .list info
+
+* Users
+  - Tracks group talk bytes as a better measurement of usage than talk time.
+  - Tracks users' last disconnect message/reason
+  - Restriction "Bot" along with "Gagged" rather than an ugly bot "privilege"
+  - Passwords are stored as dictionary attack-proof MD5 hashes.
+  - Users can be authenticated and created via an external process, for
+    integration into NIS, or a WinNT Domain Controller.
+  - Users can hide fields from .info from either guest users, or non-Masters
+
+* Privs
+  - .warn taken out of K, and put into W.
+  - .helpuser to show a user a help page as H.
+  - .lua for debugging purposes as L.
+  - Z for immunity to .kick, .name, etc.
+
+* User Interface
+  - TinyFugue compatible prompts that show context (.querying, etc.)
+  - Commands can be contracted, just like usernames (so .ex can be used instead
+    of .examine, as .ex is unambiguous.)
+  - Whispering to multiple people, including exclusions.  Such as:
+    >bob,kinni Hello! and >@public,-foo Foo smells.
+  - Whispering "reply" to last person/multitell that whispered to you via
+    >| (pipe)
+  - Bots aren't shown at all in .groups, .who, etc.  (seen via .bots)
+  - Adjustable terminal width via .set width, including an "auto" mode to
+    automatically detect the width from compatiable terminals, as well as
+    a "no wrap" mode for client-side wrapping.
+
+* New commands
+  - .Bots - lists connected bots, and their purpose.
+  - .Censor/.UnCensor - tries to stop people swearing by starring out rude words
+  - .HelpUser - shows a help page to another user
+  - .Idle - marks a user as idle (very similar to TOTH's)
+  - .Idlers - lists idle users, their reason, and how long they've been idling.
+  - .LWho - Lists who is connected to the talker, and is also a member of a
+    specific list
+  - .LastOn - shows when a user was last seen, either for a single user or
+    for all members of a list.
+  - .Lua - Executes code in the talker's VM for debugging
+  - .Request - Leaves a request for features etc for the masters
+  - .Bot/.Unbot - flags a user as a bot
+
+* .Ignore
+  - Can silently ignore somebody, so they don't get told.
+
+* .Evict
+  - You can evict somebody from Public into Limbo.
+
+* .Mark .-
+  - Shows the current time at the end of the dashes.
+
+* .NameSelf
+  - Allows a user to change the capitalisation of their name without telling
+    everybody else.
+
+* .Stats
+  - Shows all sorts of other information, including uptime, cache information,
+    and more in-depth resource usage information.
+
+* .Shout
+  - Allows emoted shouts via !; etc.
+
+There is of course likely to be all sorts of other things I've forgotten about
+but already take for granted. :)
+
+Things NILEX/EH does that Colloquy doesn't
+------------------------------------------
+
+* Commands
+  - .Cookie - It returns a random number selected when you connected.  No, I
+    can't work out its use either.
+
+* Misc
+  - Run Egham Hills. :)
+
+There are likely to be others.  I can't be bothered to check too deep, though.

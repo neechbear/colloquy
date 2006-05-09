@@ -1,0 +1,4 @@
+Usage: .LastOn <username|%listname>
+
+Shows when a user was last seen, either for a single user, or
+for all members of a list.

@@ -1,0 +1,272 @@
+#!/bin/sh
+
+if [ "x$1" = "x--debug" -o "x$1" = "x-g" ]; then
+# they want a debug build - don't strip binary, or compiled Lua
+  DEBUGLUA=""
+  STRIPBIN="true"
+else
+  DEBUGLUA="-s"
+  STRIPBIN=strip
+fi
+
+if [ "x$1" = "x--help" -o "x$1" = "x-h" ]; then
+  echo "usage: ./configure [--debug]"
+  echo ""
+  echo "Certian environment variables can be set to change how the compile,"
+  echo "happens.  On some OSes, you don't need to, as it makes a good guess."
+  echo "Here is a list:"
+  echo "CC           Path to a C compiler to use"
+  echo "CFLAGS       Options to pass the C compiler"
+  echo "EXTRACFLAGS  Extra options to pass to the C compiler"
+  echo "LIBS         Any libraries (put -lm -lsocket etc here)"
+  echo "DEFS         Any other definitions"
+  echo "LUALIB       Path to the Lua library binaries"
+  echo "LUAINC       Path to the Lua header files"
+  echo "LUABIN       Path to the Lua programs 'lua' and 'luac'"
+  echo ""
+  echo "If you want to compile colloquy, and your system doesn't have Lua 4.0"
+  echo "installed (and you're not root), then you can download it from "
+  echo "http://www.lua.org/ and compile it in your home directory (make sure"
+  echo "to enable POPEN in Lua's config file) and do something similar to the"
+  echo "following:"
+  echo "   LUALIB=/home/rjek/lua-4.0/lib/ LUAINC=/home/rjek/lua-4.0/include/"
+  echo "      LUABIN=home/rjek/lua-4.0/bin/ ./configure"
+  echo "As a shortcut, if the /lib, /include and /bin directories are all in"
+  echo "the same parent directory, you can just set LUA to point to that."
+  echo "(ie, LUA=/home/rjek/lua-4.0/ ./configure)" 
+  echo "This configure script is routinely tested on Debian GNU/Linux (testing),"
+  echo "NetBSD 1.6, Solaris 8, and a recentish version FreeBSD.  If it doesn't"
+  echo "word for you, then email me, and I'll see what I can do."
+  exit
+fi
+
+printf "colloquy configure begins for "
+
+UNAME_MACHINE=`(uname -m) 2> /dev/null` || UNAME_MACHINE=unknown
+UNAME_RELEASE=`(uname -r) 2> /dev/null` || UNAME_RELEASE=unknown
+UNAME_SYSTEM=`(uname -s) 2> /dev/null` || UNAME_SYSTEM=unknown
+UNAME_VERSION=`(uname -v) 2> /dev/null` || UNAME_VERSION=unknown
+UNAME_OS=`(uname -o) 2> /dev/null` || UNAME_OS=unknown
+
+if [ "x$UNAME_OS" = "xCygwin" ]; then
+  UNAME_SYSTEM="Windows"
+  EXE=.exe
+else
+  EXE=
+fi
+
+OUR_CFLAGS=
+OUR_LIBS=-lm
+OUR_DEFS=
+OUR_CC=
+OUR_LD=
+OUR_LDFLAGS=
+OUR_LUALIB=
+OUR_LUAINC=
+OUR_LUABIN=
+
+echo $UNAME_SYSTEM $UNAME_MACHINE
+
+printf "looking for a cc... "
+
+case "${UNAME_OS}:${UNAME_MACHINE}:${UNAME_SYSTEM}" in
+  *:Linux)
+    if [ -x "/usr/bin/icc" ]; then
+      OUR_CC="/usr/bin/icc"
+      OUR_CFLAGS="-O2 -ip -Ob2"
+    else  
+      OUR_CC=`which gcc`
+      OUR_CFLAGS=-O2
+    fi
+    OUR_LIBS=-lm
+    OUR_DEFS=-D_POSIX_SOURCE
+    OUR_LD=`which gcc`
+    ;;
+  *:FreeBSD)
+    OUR_CC=`which gcc`
+    OUR_CFLAGS=-O2
+    OUR_LD=`which gcc`
+    ;;
+  *:OpenBSD)
+    OUR_CC=`which gcc`;
+    OUR_CFLAGS=-O2
+    OUR_LD=`which gcc`
+    ;;
+  *:NetBSD)
+    OUR_CC=`which gcc`
+    OUR_CFLAGS=-O2
+    OUR_LD=`which gcc`
+    ;;
+  *:QNX)
+    OUR_CC=`which qcc`
+    OUR_CFLAGS=-O2
+    OUR_LIBS="-lm -lsocket"
+    OUR_LD=`which qcc`
+    ;;
+  Cygwin:*)
+    OUR_CC=`which gcc`
+    OUR_CFLAGS=-O2
+    OUR_LIBS=-lm
+    OUR_LD=`which gcc`
+    ;;
+  *:SunOS)
+    OUR_LIBS="-lm -lsocket -lnsl -lresolv"
+    if [ -x "/usr/local/opt/SUNWspro/bin/cc" ]; then
+      # they have Solaris CC
+      OUR_CC=/usr/local/opt/SUNWspro/bin/cc
+      OUR_CFLAGS="-fast -v -xstrconst -xprefetch -native"
+      OUR_LD=/usr/local/opt/SUNWspro/bin/cc
+    else
+      # they don't.  or at least I can't find it.
+      if [ -x `which gcc` ]; then
+        # gcc?
+        OUR_CC=`which gcc`
+        OUR_CFLAGS=-O2
+        OUR_LD=`which gcc`
+      fi
+    fi
+esac
+
+if [ "x$CC" != "x" ]; then
+  OUR_CC=$CC
+fi
+
+if [ "x$CFLAGS" != "x" ]; then
+  OUR_CFLAGS=$CFLAGS
+fi
+
+OUR_CFLAGS="$OUR_CFLAGS $EXTRACFLAGS"
+
+if [ "x$LIBS" != "x" ]; then
+  OUR_LIBS=$LIBS
+fi
+
+if [ "x$DEFS" != "x" ]; then
+  OUR_DEFS=$DEFS
+fi
+
+if [ "x$LD" != "x" ]; then
+  OUR_LD=$LD
+fi
+
+if [ "x$LDFLAGS" != "x" ]; then
+  OUR_LDFLAGS=$LDFLAGS
+fi
+
+if [ "x$OUR_CC" = "x" ]; then
+  if [ "x$CC" = "x" ]; then
+    # we havn't found one, and they havn't specified one, either.
+    # Errm, hmm.
+    echo "not found.  Define CC environment variable."
+    exit
+  else
+    OUR_CC=$CC
+  fi
+else
+  echo $OUR_CC $OUR_CFLAGS
+fi
+
+if [ "x$OUR_LD" = "x" ]; then
+  OUR_LD=$OUR_CC
+fi
+
+findlua ()
+{
+  cat <<MARK > conftest.c
+
+#include <stdio.h>
+#include "lua.h"
+#include "lualib.h"
+
+int main(int argc, char** argv) {
+  lua_State *L = lua_open(0);
+  lua_baselibopen(L);
+  lua_iolibopen(L);
+  lua_dostring(L, "f=readfrom('|echo cheese'); if not f then print('no popen') else print('popen present') end");
+
+  return 0;
+}
+
+MARK
+
+  for i in "$LUAINC" "/usr/local/include/lua40" "/usr/local/include/lua" "/usr/local/include" "/usr/include/lua40" "/usr/include/lua" "/usr/include" "/home/system/lua"; do
+    if [ "x$i" != "x" ]; then 
+      for l in "$LUALIB" "" "/usr/local/lib"; do
+        [ "x$l" = "x" ] || l="-L$l"
+        for s in "" "40"; do
+          $OUR_CC -o conftest conftest.c -I$i $l -llua$s -llualib$s $LIBS > /dev/null 2>&1
+          if [ $? = 0 ]; then
+           rm conftest.c
+           return
+          fi
+        done
+      done
+    fi
+  done
+  rm conftest.c
+  i=FAIL
+  s=FAIL
+}
+
+printf "finding lua... "
+
+if [ "x$LUA" != "x" ]; then
+  # It's all in one place.
+  LUAINC=${LUA}/include/
+  LUALIB=${LUA}/lib/
+  LUABIN=${LUA}/bin/
+fi
+
+findlua
+
+if [ "x$i" = "xFAIL" -o "x$s" = "xFAIL" ]; then
+  echo "not found."
+  echo "You should define the environment variables LUAINC, LUALIB and"
+  echo "LUABIN to point to the directories with the Lua header files,"
+  echo "the Lua libraries, and the lua/luac programs reside, and rerun"
+  echo "this configure script."
+  rm ./conftest$EXE
+  exit 1
+else
+  OUR_LUALIB="$l -llua$s -llualib$s"
+  OUR_LUAINC="-I$i"
+fi
+
+echo "$OUR_LUALIB $OUR_LUAINC"
+
+printf "checking for popen support... "
+if [ "`./conftest$EXE;rm ./conftest$EXE`" != "popen present" ]; then
+  echo "none!  You must run colloquy with noFork = 1"
+else
+  echo "found."
+fi
+
+printf "checking for zlib... "
+if [ -e "/usr/include/zlib.h" ]; then
+  echo "found."
+  ZLIB="-DCOLLOQUY_ZLIB -lz"      
+else
+  echo "not found.  No problem."
+fi
+
+
+printf "creating config... "
+echo "# config - automatically generated by ./configure" > config
+echo BUILDNAME=${UNAME_SYSTEM}-${UNAME_MACHINE} >> config
+echo UNAME_SYSTEM=$UNAME_SYSTEM >> config
+echo UNAME_MACHINE=`(uname -m) 2> /dev/null` >> config
+echo CC=${OUR_CC} >> config
+echo CFLAGS=${OUR_CFLAGS} >> config
+echo LD=${OUR_LD} >> config
+echo LDFLAGS=${OUR_LDFLAGS} >> config
+echo EXTRALIBS=${OUR_LIBS} >> config
+echo DEFS=${OUR_DEFS} >> config
+echo LUALIB=$OUR_LUALIB >> config
+echo LUAINC=$OUR_LUAINC >> config
+echo LUA=${LUABIN}lua >> config
+echo LUAC=${LUABIN}luac >> config
+echo ZLIB=${ZLIB} >> config
+echo EXE=${EXE} >> config
+echo DEBUGLUA=$DEBUGLUA >> config
+echo STRIPBIN=$STRIPBIN >> config
+echo done.

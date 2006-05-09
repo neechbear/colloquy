@@ -1,0 +1,3 @@
+Usage: .List Unmaster <listname> <username>
+
+Makes a user a normal list user, removing their powers.

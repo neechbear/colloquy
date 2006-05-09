@@ -1,0 +1,115 @@
+Colloquy Welcome Guide For Talker Masters
+-----------------------------------------
+
+Welcome to colloquy, a talker inspired by the Nilex Talker, and Egham Hills.
+Once you have colloquy compiled, you should have a dist- directory, with the
+binaries, default configuration files, and various other bits in it.  You'll
+want to change some of these, so let's get to it:
+
+* config.lua
+  ----------
+
+  This file is the main source of configuration information in colloquy.
+  There are numerous settings that *should* be in here, but aren't (such as
+  list quotas) - they will be at some point, I promise.  By editing this file,
+  you can set which port the talker listens on, and to which IPs (0.0.0.0
+  binds to all).  You can also specify where various files are, like the
+  welcome screen, the MOTD, and where the user and list databases are kept.
+  
+  Colloquy has a seperate process for doing background reverse DNS, so you
+  can also adjust what that listens on (you almost always want localhost) and
+  on which port.
+
+  The colloquy.maxIdle setting is the number of minutes a user can go without
+  sending anything to the talker before they are considered "Idle".  One of
+  two actions can be taken on users who become "Idle".  Classical NILEX and
+  Egham Hills kick the user off, but Meta Hills was started to replace an ircd
+  where people basically idled all day, and didn't want to disconnect all the
+  time, so an alternative method whereby "Idle" people are simply marked as
+  such.  You can set this by adjusting the value of colloquy.kickIdle - if it
+  is set (which means non-nil, not non-zero) users will be kicked after they
+  have been idle for colloquy.maxIdle minutes.
+
+  colloquy.swears is a list of words to censor if a user is censored by a
+  master.  This functionality is a bit of a bodge, but you can add "Emacs",
+  "Vim", "GNOME", "KDE" and such to this if you want to try to prevent
+  trouble-makers starting wars. :)
+
+* data/welcome
+  ------------
+
+  This file is sent to people when they connect, before they have logged on.
+  It should really include a prompt for their username/password, and possibly
+  some clues on the format.  The format for a login is quite complex, but
+  most of it is rarely needed:
+   
+   [*][_]username[@default-group] [password]
+
+  Starting with a * forces any previous connection (such as a dead session)
+  off, if the user has an account.
+
+  Starting with a _ causes the user to log on invisibly to non-Master users
+  (assuming the user has an account, and the I priv.  Can be used in conjuntion
+  with *)
+
+  username is simply the user's chosen handle on the talker.
+
+  If the username is followed directly by @ and a group name, then the user
+  will be placed in the named group by default, rather than Public, unless
+  that group is locked.
+
+  Finally, if the user has an account, they should provide their password
+  after a space, and *not* an newline.
+
+* data/motd
+  ---------
+
+  This is the text sent to a connection after they have connected.  Simple.
+
+* data/bithday
+  ------------
+
+  This is the text sent to a connection after they have connected, and it
+  is their birthday.  Tacky, pointless, but occationally heart-warming.
+
+Right, now you can fire the talker up.  If no user database exists (as pointed
+to by config.lua) then one is created, with the default root user, called
+"god", whose password is also "god" by default - you'll want to change this
+pretty sharpish (with .password).  Also, if no list database is found, a
+default is created, with one list in it called "Masters" of which god is
+the owner, and only member.
+
+Log in as god, and create yourself an account.  To do this, use the .newuser
+command.  Type ".help newuser" to see how.  Most commands have .help, and the
+ones that don't, should. :)  Typing just ".help" on its own will produce a
+list of commands that are available to you.
+
+Once you've created yourself a user, you'll want to give yourself all the
+privs a master should have.  This is basically all the letters of the alphabet,
+except Z, which *only* god should have - it provides immunity to various parts
+and functions of the talker, and will really confuse things in day-to-day use.
+It is only for emergency use!  Do this with .userinfo - .help userinfo should
+tell you what you need to do, but basically, do the following:
+
+  .userinfo username privs ABCDEFGHIJKLMNOPQRSTUVWXY
+
+This'll give you all the privs you need to create other users, and such.  At
+this point, it would be best to log off, and log back on as your newly created
+user.
+
+If you want to know what each of the privs does, .help privs lists most of
+them, and what commands it provides.
+
+This is really only a very brief welcome guide, just enough to get you
+started.  Colloquy is really rather a complex piece of software, much more
+so than I originally intended (which is why the source is so *DIRE*) so
+fully documenting it will take some time, but I'm working on it.
+
+It is in my interest to keep maintaining colloquy, fixing bugs, and tidying it,
+as I use two talkers most of the time, and one of them uses it!
+
+I welcome suggestions, patches, bug reports, and if I'm in a good mood, even
+receive technical support queries (I know that the docs aren't good, so it'll
+motivate me!).  Also, try reading all the help files in /data/help/
+
+Rob Kendrick <colloquy@nun.org.uk> 2nd Oct 2002

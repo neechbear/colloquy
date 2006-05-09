@@ -1,0 +1,8 @@
+Usage: .query [<user>|%<list>|@<group>]
+ 
+Start or stop Query mode for the given user or group. In Query mode,
+everything you say will be whispered to that user/group.
+Usage: .query [<user>|%<list>|@<group>]
+ 
+Start or stop Query mode for the given user or group. In Query mode,
+everything you say will be whispered to that user/group.

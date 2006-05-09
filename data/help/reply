@@ -1,0 +1,5 @@
+Usage: .reply <text>
+
+Replies to the last whisper you heard.  If the whisper was a multitell, then
+you reply to the people who sent it, and all the other receipiants.   You can
+shorten it to simply >| and emote using <|

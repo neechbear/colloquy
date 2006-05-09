@@ -1,0 +1,3 @@
+Usage: .Disregard <groupname>
+
+Stops observing a previously observed group.

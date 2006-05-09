@@ -1,0 +1,3 @@
+.List ReadWrite <listname>
+
+Makes a list read-write, so any member can write to it.

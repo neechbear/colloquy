@@ -1,0 +1,4 @@
+Usage: .list unpermanent <listname>
+
+Marks a list as unpermanent, so it can expire, and it goes towards
+the owner's list quota.

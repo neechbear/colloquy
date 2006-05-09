@@ -1,0 +1,3 @@
+Usage: .UnBan <site>
+ 
+Removes a site from the list of banned sites.

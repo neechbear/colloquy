@@ -1,0 +1,3 @@
+Usage: .unbanuser <user>
+
+Unbans a previously banned user.

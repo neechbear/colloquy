@@ -1,0 +1,4 @@
+Usage: .list open <listname>
+
+Opens a list, so that people can whisper messages to it without
+having to join it.

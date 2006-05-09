@@ -1,0 +1,10 @@
+* Privileged users should only use their privs on a user if they have
+  been breaking the rules or when requested by that user.
+* Do not kick a user for disobeying the rules unless they have been
+  .warned first, or unless they crash.
+* In cases where people are abusing the shout facility, they should be
+  gagged rather than kicked off.
+* .name is NOT to be used to rename yourself or others to silly names.
+  Unless it's extremely amusing etc.
+* If you think someone is mis-interpreting a situation, or the rules, do
+  not start an argument. Instead, mail talker@pepperfish.net

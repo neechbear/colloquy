@@ -1,0 +1,3 @@
+Usage: .Set Shouts <On|Off>
+
+Allows you to filter shouts, so they are not sent to you.

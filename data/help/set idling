@@ -1,0 +1,3 @@
+Usage: .Set Idling <On|Off>
+
+Allows you to filter idle and unidle messages.

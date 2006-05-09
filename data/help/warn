@@ -1,0 +1,4 @@
+Usage: .warn <user> <reason>
+
+Logs an official warning against a user. You should always use this
+before kicking someone.

@@ -1,0 +1,4 @@
+Usage: .Set Strip <On|Off>
+
+Enables or disables stripping of leading spaces from command
+shortcuts like ; for .emote and such.

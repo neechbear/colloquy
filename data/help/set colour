@@ -1,0 +1,17 @@
+Usage: .Set Colour <Type> <Foreground> <Background>
+
+Allows you to set the colours used when your terminal is
+set to 'colour'.  Valid types are:
+   talk           Normal conversation in the current group
+   tell           Conversation to a specific user or group
+   list           Conversation carried out on a list.
+   listname       The name of lists inside { }
+   shout          Shouted text, seen in all groups
+   message        Messages from the talker, help etc.
+   nick           The colour a user's name gets highlighted
+	                if they mention you.
+   me             Your own name when you talk.
+
+Valid colours are:
+   black, red, green, yellow, blue, magenta, cyan, white.
+Colours can be prefixed with "br" to make a brighter version.

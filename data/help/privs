@@ -1,0 +1,23 @@
+Privs and their meanings:  (see also ".help privuse")
+
+A = .alert (the "+++ URGENT MESSAGE:" you sometimes see.)
+B = .banuser, .unbanuser, .locktalker (for banning users)
+C = .closedown (useful for rebooting)
+E = .evict from Public and other groups
+F = .force
+G = .gag, .ungag (to stop people from shouting)
+H = .helpuser (provide help to other users)
+I = .vis, .invis
+K = .kick (kick silly users)
+L = .lua (executes commands inside the talker's VM)
+M = Master - Enhances several commands, automatically
+    a list master on every list, can see invisible
+    connections, etc.
+N = .name (for renaming offensively or wrongly named
+    spods)
+O = .observe, .disregard (for observing groups)
+P = .set privs (to temporarily set someone's privs)
+S = .spy - allows a user to join locked groups.
+U = .newuser, .deleteuser, .userinfo (user management)
+W = .warn (for warning users, and recording it in the log)
+Z = Immunity - for god only.

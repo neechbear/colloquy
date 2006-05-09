@@ -1,0 +1,25 @@
+RK 2003-09-21 Fixed error message when trying to evict list owner
+RK 2003-10-23 Internationalisation implemeneted for most strings
+RK 2003-12-01 New syntax colouring code, new "me" colour
+RK 2003-12-02 Token cache for lower latency
+RK 2004-03-02 Fudge to fix huggie's .set width 0 bug
+RK 2004-08-26 Imported colloquy into Subversion from Perforce
+RK 2004-08-27 Added support for .Set Language to return a list of choices
+              Documented .Help Set Language
+RK 2004-10-28 Added .HelpUser command with H priv
+              Users now get an error if they don't have the privs to do
+               something, rather than silence.  (Ooops.)
+RK 2004-10-29 All-new censoring
+              New .Set Idling setting
+RK 2004-11-02 Added i18n to help messages, including inheritance
+DS 2004-11-15 Using .NameSelf to recapitalise your name now works properly
+RK 2004-12-01 Fix IAC FA to IAC EOR in prompt code
+RK 2004-12-09 Masters can now invite uses to lists they're not members of
+              Prompts are generated at the end of the parser, such that
+               they update properly after .query or .nameself
+RK 2004-12-10 Users are now stored one user per file on disc
+RK 2004-12-29 Lists are now stored one list per file on disc
+RK 2005-01-04 .LWho now correctly says which list you're whoing
+               Added best part of two years' user-facing changes here :)
+RK 2005-01-16 Added .Observe and .Disregard with O priv
+See .Help Changes2 for the complete list.  (Which is quite a bit.)

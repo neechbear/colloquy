@@ -1,0 +1,6 @@
+Usage: .list unpause [<listname>]
+
+Unpauses a list, so that you are sent conversation from it.  If you
+try to talk to a paused list, it will be automatically unpaused for
+you.  If you don't specify a list name, it tells you which lists
+you have paused.

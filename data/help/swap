@@ -1,0 +1,4 @@
+Usage: .Swap <User> <Password>
+
+Swaps your connection with another user's.  You must specify the target
+user's password, as you become them.

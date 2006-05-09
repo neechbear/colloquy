@@ -1,0 +1,4 @@
+Usage: .Look [group name]
+
+Lists users in a group, or your current group if none
+is specified.

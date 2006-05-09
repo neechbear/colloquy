@@ -1,0 +1,199 @@
+diff -c -r colloquy-1.41.94/config colloquy-1.41.94.arwen-1/config
+*** colloquy-1.41.94/config	2005-05-21 23:59:56.000000000 +0100
+--- colloquy-1.41.94.arwen-1/config	2006-05-09 16:06:29.000000000 +0100
+***************
+*** 8,18 ****
+  LDFLAGS=
+  EXTRALIBS=-lm
+  DEFS=-D_POSIX_SOURCE
+! LUALIB= -llua40 -llualib40
+! LUAINC=-I/usr/include/lua40
+! LUA=lua
+! LUAC=luac
+  ZLIB=-DCOLLOQUY_ZLIB -lz
+  EXE=
+! DEBUGLUA=
+! STRIPBIN=true
+--- 8,18 ----
+  LDFLAGS=
+  EXTRALIBS=-lm
+  DEFS=-D_POSIX_SOURCE
+! LUALIB=-L/home/system/lua/lib/ -llua -llualib
+! LUAINC=-I/home/system/lua/include/
+! LUA=/home/system/lua/bin/lua
+! LUAC=/home/system/lua/bin/luac
+  ZLIB=-DCOLLOQUY_ZLIB -lz
+  EXE=
+! DEBUGLUA=-s
+! STRIPBIN=strip
+diff -c -r colloquy-1.41.94/configure colloquy-1.41.94.arwen-1/configure
+*** colloquy-1.41.94/configure	2005-05-13 00:35:13.000000000 +0100
+--- colloquy-1.41.94.arwen-1/configure	2006-05-09 16:06:23.000000000 +0100
+***************
+*** 29,35 ****
+    echo "http://www.lua.org/ and compile it in your home directory (make sure"
+    echo "to enable POPEN in Lua's config file) and do something similar to the"
+    echo "following:"
+!   echo "   LUALIB=/home/rjek/lua-4.0/lib/ LUALIB=/home/rjek/lua-4.0/include/"
+    echo "      LUABIN=home/rjek/lua-4.0/bin/ ./configure"
+    echo "As a shortcut, if the /lib, /include and /bin directories are all in"
+    echo "the same parent directory, you can just set LUA to point to that."
+--- 29,35 ----
+    echo "http://www.lua.org/ and compile it in your home directory (make sure"
+    echo "to enable POPEN in Lua's config file) and do something similar to the"
+    echo "following:"
+!   echo "   LUALIB=/home/rjek/lua-4.0/lib/ LUAINC=/home/rjek/lua-4.0/include/"
+    echo "      LUABIN=home/rjek/lua-4.0/bin/ ./configure"
+    echo "As a shortcut, if the /lib, /include and /bin directories are all in"
+    echo "the same parent directory, you can just set LUA to point to that."
+***************
+*** 189,195 ****
+  
+  MARK
+  
+!   for i in "$LUAINC" "/usr/local/include/lua40" "/usr/local/include/lua" "/usr/local/include" "/usr/include/lua40" "/usr/include/lua" "/usr/include"; do
+      if [ "x$i" != "x" ]; then 
+        for l in "$LUALIB" "" "/usr/local/lib"; do
+          [ "x$l" = "x" ] || l="-L$l"
+--- 189,195 ----
+  
+  MARK
+  
+!   for i in "$LUAINC" "/usr/local/include/lua40" "/usr/local/include/lua" "/usr/local/include" "/usr/include/lua40" "/usr/include/lua" "/usr/include" "/home/system/lua"; do
+      if [ "x$i" != "x" ]; then 
+        for l in "$LUALIB" "" "/usr/local/lib"; do
+          [ "x$l" = "x" ] || l="-L$l"
+diff -c -r colloquy-1.41.94/src/colloquy.lua colloquy-1.41.94.arwen-1/src/colloquy.lua
+*** colloquy-1.41.94/src/colloquy.lua	2005-09-10 22:47:09.000000000 +0100
+--- colloquy-1.41.94.arwen-1/src/colloquy.lua	2006-05-09 15:19:03.000000000 +0100
+***************
+*** 13,20 ****
+                   -- This reduces calls to time()
+  
+  colloquy = {
+!    version = "1.41.94",
+!    date = "21 May 2005",
+     startTime = date("%a %b %d %H:%M:%S %Z %Y"),
+     startClock = nil, --tonumber(date("%s")),
+     connections = {},   -- this table is keyed on the LuaSocket handle.
+--- 13,20 ----
+                   -- This reduces calls to time()
+  
+  colloquy = {
+!    version = "1.41.94.arwen-1",
+!    date = "09 May 2006",
+     startTime = date("%a %b %d %H:%M:%S %Z %Y"),
+     startClock = nil, --tonumber(date("%s")),
+     connections = {},   -- this table is keyed on the LuaSocket handle.
+diff -c -r colloquy-1.41.94/src/lists.lua colloquy-1.41.94.arwen-1/src/lists.lua
+*** colloquy-1.41.94/src/lists.lua	2005-05-13 00:35:13.000000000 +0100
+--- colloquy-1.41.94.arwen-1/src/lists.lua	2006-05-09 15:53:42.000000000 +0100
+***************
+*** 1552,1558 ****
+    if dir then
+      local e = dir();
+      while (e) do
+!       if not strfind(e, "^%.") then
+          lists[e] = dofile(dirname .. "/" .. e)
+        end
+        e = dir()
+--- 1552,1558 ----
+    if dir then
+      local e = dir();
+      while (e) do
+!       if (not strfind(e, "^%.") and strlower(e) == e) then
+          lists[e] = dofile(dirname .. "/" .. e)
+        end
+        e = dir()
+***************
+*** 1573,1580 ****
+  function saveLists(dirname)
+    dirname = dirname or colloquy.lists
+    for i, v in lists do
+!     if type(v) == "table" then
+!       local f = openfile(dirname .. "/" .. i, "w")
+        write(f, "return ")
+        dumpList(v, f, 0)
+        closefile(f)
+--- 1573,1580 ----
+  function saveLists(dirname)
+    dirname = dirname or colloquy.lists
+    for i, v in lists do
+!     if (type(v) == "table" and strlower(i) == i) then
+!       local f = openfile(dirname .. "/" .. strlower(i), "w")
+        write(f, "return ")
+        dumpList(v, f, 0)
+        closefile(f)
+***************
+*** 1583,1589 ****
+  end
+  
+  function saveOneList(list)
+!   local f = openfile(colloquy.lists .. "/" .. list, "w")
+    write(f, "return ")
+    dumpList(lists[list], f, 0)
+    closefile(f)
+--- 1583,1589 ----
+  end
+  
+  function saveOneList(list)
+!   local f = openfile(colloquy.lists .. "/" .. strlower(list), "w")
+    write(f, "return ")
+    dumpList(lists[list], f, 0)
+    closefile(f)
+diff -c -r colloquy-1.41.94/src/users.lua colloquy-1.41.94.arwen-1/src/users.lua
+*** colloquy-1.41.94/src/users.lua	2005-05-13 00:35:14.000000000 +0100
+--- colloquy-1.41.94.arwen-1/src/users.lua	2006-05-09 15:44:55.000000000 +0100
+***************
+*** 52,59 ****
+     -- dumps the users table to file in an executable form
+  
+     for i, v in users do
+!      if type(v) == "table" then
+!        local f = openfile(dirname .. "/" .. i, "w");
+         write(f, "return ")
+         dumpUser(v, f, 0)
+         closefile(f)
+--- 52,59 ----
+     -- dumps the users table to file in an executable form
+  
+     for i, v in users do
+!      if (type(v) == "table" and strlower(i) == i) then
+!        local f = openfile(dirname .. "/" .. strlower(i), "w");
+         write(f, "return ")
+         dumpUser(v, f, 0)
+         closefile(f)
+***************
+*** 62,68 ****
+  end;
+  
+  function saveOneUser(user)
+!   local f = openfile(colloquy.users .. "/" .. user, "w");
+    write(f, "return ")
+    dumpUser(users[user], f, 0)
+    closefile(f)
+--- 62,68 ----
+  end;
+  
+  function saveOneUser(user)
+!   local f = openfile(colloquy.users .. "/" .. strlower(user), "w");
+    write(f, "return ")
+    dumpUser(users[user], f, 0)
+    closefile(f)
+***************
+*** 73,79 ****
+    if dir then
+      local e = dir();
+      while (e) do
+!       if not strfind(e, "^%.") then
+          users[e] = dofile(dirname .. "/" .. e);
+        end
+        e = dir();
+--- 73,79 ----
+    if dir then
+      local e = dir();
+      while (e) do
+!       if (not strfind(e, "^%.") and strlower(e) == e) then
+          users[e] = dofile(dirname .. "/" .. e);
+        end
+        e = dir();

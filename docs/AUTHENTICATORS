@@ -1,0 +1,72 @@
+Colloquy Authenticators
+~~~~~~~~~~~~~~~~~~~~~~~
+
+Colloquy stores user information in a single file on disc.  This includes
+their username, password, location, occupation, last connection site,
+talk time and such.  Normally, the password is stored as the MD5 hash of
+the username and their password concatenated in this file, along with
+their other information.  However, you can also define an "authoriser"
+helper program, that will be used to authenticate a user, instead of
+using the MD5 hash stored internally.
+
+When a user is normally created by a master, they specify their username and 
+their initial password using the .newuser command.  If the master then wants 
+this user to be authenticated to an external authoriser, instead of the one 
+inside colloquy, they can set a field in the user's infomation which 
+specifies an authoriser, and what username to use:
+
+  .userinfo username authenticator user@host:port
+
+This tells colloquy that the user "username" is authenticated by connecting 
+to the computer "host" on "port", and using the user name "user".
+
+Colloquy connects to the authoriser via TCP, and uses the following protocol.  
+
+Colloquy makes use of a connection to an authoriser only once, and closes the
+connection once it has received an answer.  Passwords are send in the clear.
+If this concerns you, remember the following:
+
+  1) The password has been sent over the wire in the clear once
+     already (the user provided it when logging on.)
+  2) You can always run the authoriser locally.
+  3) If you can't run it locally, you can always use stunnel or
+     similar if you're still paranoid.
+
+  Colloquy asks:       auth <user> <password>\n
+  Authoriser replies:  auth <code> <message>\n
+
+Colloquy wishes to know if <password> is valid for <user>.  The authoriser 
+should reply, with <code> as "1" if the password is valid, or "0" if 
+authentication failed.  (Be it an invalid password, or a networking problem,
+or similar.)  Colloquy will display the message specified in either case, to 
+the user.
+
+  Colloquy asks:       pass <user> <old> <new>\n
+  Authoriser replies:  pass <code> <message>\n
+
+Colloquy wishes to change <user>'s password from <old> to <new>. The return 
+code and message are the same for normal authentication.
+
+Craig Macdonald has produced two example authenticators, a NIS one, and an
+SMB one:
+
+--8<--
+
+Just thought I'd send you the authenticators I wrote, as you asked.                                                    
+They're extremely simple Perl scripts, using appropriate CPAN modules                                                  
+to do the business:                                                                                                    
+Authen::Smb                                                                                                            
+Net::NIS                                                                                                               
+                                                                                                                       
+for authenticating against Smb and NIS databases.                                                                      
+I've also put in some rough IP address restrictions in them - it                                                       
+wouldn't be to advisable to leave these open to the world.                                                             
+                                                                                                                       
+                                                                                                                       
+A very very small and unimportant note was that the authenticators                                                     
+doc is called authorisers and not authenticators. Not sure if this                                                     
+was intentional or not. But yeh, great job!                                                                            
+
+-->8--
+
+They are included in the docs/ directory.

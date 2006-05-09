@@ -1,0 +1,4 @@
+Usage: .bot <user>
+
+Flags a user as a bot, so they can connect silently, and don't
+appear in .groups etc.  Username must end in "Bot".

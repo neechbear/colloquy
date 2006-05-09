@@ -1,0 +1,4 @@
+Usage: .Shout <text>
+
+Shouts some text so that it is heard in all groups.
+This can be abbreviated to just '!'.

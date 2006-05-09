@@ -1,0 +1,154 @@
+-- colloquy example configuration file
+-- you'll want to change this.
+
+-- where is considered the base for everything else, such as
+-- the user databases etc.
+colloquy.base = "./"
+
+-- which port should the server listen on?
+colloquy.port = 1234;
+
+-- which interface should the server listen on?
+-- 0.0.0.0 binds to all - can also be a hostname.
+colloquy.ip = "0.0.0.0";
+
+-- Where would you like bots to connect to?  Unlike the above,
+-- connections here do not get a welcome message, and do not
+-- cause connection warnings.
+-- colloquy.botPort = 1236;
+-- colloquy.botIP = "0.0.0.0";
+
+-- Where would you like the metaserver to listen?  This allows
+-- you to have port forwarders on other machines that provide
+-- the IP that clients connect to, so the connection messages
+-- still work.
+-- colloquy.metaPort = 1237;
+-- colloquy.metaIP = "0.0.0.0";
+-- colloquy.metaPassword = "proxy";
+
+-- Where would you like to accept connections to the metaserver
+-- from?
+-- colloquy.metaOK = { "127.0.0.1", "talker.pepperfish.net" };
+
+-- if you run colloquy as root, you can get it to chroot and drop
+-- privs to a specific user (not ID).  You should note that
+-- this may well break .request, as it requires `mail`.  Also, all three
+-- must be set if anything is to be done.  (You're not running the talker
+-- as root, matey!)
+-- colloquy.becomeUser = "nobody"
+-- colloquy.becomeGroup = "nogroup"
+-- colloquy.chroot = "data/" -- you'll want to change other paths/directories to be
+--                              relative to here
+-- colloquy.detach = 1       -- you really want to do this if chrooting and such.
+--                              (otherwise the talker has FDs open as root.)
+
+-- filename of the file stuffed to users when they
+-- connect, before logging on.
+colloquy.welcome = "data/misc/welcome";
+
+-- message of the day - shown when a user logs in
+colloquy.motd = "data/misc/motd";
+
+-- birthday - sent to somebody when they connect on their
+-- birthday.
+colloquy.birthday = "data/misc/birthday";
+
+-- directory name of the users database.
+colloquy.users = "data/users/";
+
+-- directory where .help data is stored.
+colloquy.help = "data/help/";
+
+-- where the resolver process should bind.
+colloquy.resolverIP = "127.0.0.1";
+
+-- what port the resolver process should bind to.
+colloquy.resolverPort = 1235;
+
+-- the email address of the admin (for .request etc)
+colloquy.email = "admin@talker.moo.com";
+
+-- the maximum idle time in minutes.  Must be more than
+-- 0.
+colloquy.maxIdle = 90;
+
+-- if non-nil, then users will be kicked when idle, otherwise
+-- they'll just be badged idle in .who and .examine.
+colloquy.kickIdle = 1;
+
+-- list of swear-words that should be stared-out when a censored user
+-- utters them.
+colloquy.swears = "data/misc/swearwords";
+
+-- list of users who are allowed to use the inspect command.  This
+-- is controlled seperately from the usual priv system due to the
+-- possibility of privacy issues.  Each of these users will also
+-- require the S priv, however.  It defaults to no users, not even
+-- god.
+-- colloquy.inspectors = { "morse" };
+
+-- directory for the lists
+colloquy.lists = "data/lists/";
+
+-- how many non-permanent lists should users be allowed?
+colloquy.listQuota = 5;
+
+-- how many days of non-use should a non-permanent list be deleted?
+colloquy.listExpiry = 14;
+
+-- datafile for the bans
+colloquy.banFile = "data/bans";
+
+-- directory where language packs reside.
+colloquy.langs = "data/lang/";
+
+-- the talker's name.  "the talker" is default for grammatical correctness
+-- in some messages.
+colloquy.talkerName = "the talker";
+
+-- where to put the logfile
+colloquy.logName = "logfile.txt";
+
+-- command to execute to retate log files.  Set to nil if you don't want
+-- daily rotations.  It is first passed through a strftime-like function.
+colloquy.logRotate = "gzip -c9 logfile.txt > logfile.%Y%m%d.gz";
+
+-- if you're on a platform that can't fork stuff, then set this.  It will
+-- disable certain commands.
+-- colloquy.noFork = 1;
+
+-- The maximum number of guests to allow.  If unset, there is no maximum.
+-- Setting it to zero prevents guests from logging on at all.
+colloquy.maxGuests = 2;
+
+-- How long guests are allowed to stay connected, in seconds.  If not set,
+-- then they can stay connected for ever.
+colloquy.guestTimeout = 600;
+
+-- When is considered "daytime"
+colloquy.daytime = "0800-1800";
+
+-- How many users are allowed on during the daytime.  Unset for no limit.
+colloquy.daytimeMax = 150;
+
+-- How many users are allowed on during the nighttime.  Unset for no limit.
+colloquy.nighttimeMax = 300;
+
+-- What the default language of the talker is.
+colloquy.lang = "en-gb";
+
+-- Which SMTP server to use for sending .requests and stack backtraces
+colloquy.smtpserver = "localhost";
+
+-- Use a default authenticator. Setting this will mean that unknown users
+-- connecting with a password (that authenticates), will be created as users.
+-- If you have no idea what this means, best not to touch it.
+-- See docs/AUTHENTICATOR for more information.
+-- colloquy.defAuthenticator = "localhost:5005"
+
+-- We can start bots and such as part of the startup.  Put a list of commands
+-- to run here.  It's a table of tables, each table has a number of strings, 
+-- where the first is the program to run, and the others are paramters.
+-- colloquy.exec = {
+--  { "./gagbot.lua" }
+-- }
