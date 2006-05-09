@@ -64,7 +64,7 @@ end;
 function saveOneUser(user)
   local f = openfile(colloquy.users .. "/" .. strlower(user), "w");
   write(f, "return ")
-  dumpUser(users[user], f, 0)
+  dumpUser(users[strlower(user)], f, 0)
   closefile(f)
 end
 

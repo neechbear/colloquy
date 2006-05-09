@@ -37,10 +37,10 @@ chattr = {
 }
 
 function migrateColours(user)
-  if (strfind(users[user].colours or "", ",")) then
+  if (strfind(users[strlower(user)].colours or "", ",")) then
     -- they have an old-style colour string - convert it to a new one.
     log("   Migrating " .. user .. "'s colouring settings to new format.")
-    local o, c = users[user].colours;
+    local o, c = users[strlower(user)].colours;
     c = format("!talk!%s:%s", getOldColour(o, "talk"), getOldColour(o, "talkback"));
     c = c .. format("!tell!%s:%s", getOldColour(o, "tell"), getOldColour(o, "tellback"));
     c = c .. format("!list!%s:%s", getOldColour(o, "list"), getOldColour(o, "listback"));
@@ -48,7 +48,7 @@ function migrateColours(user)
     c = c .. format("!shout!%s:%s", getOldColour(o, "shout"), getOldColour(o, "shoutback"));
     c = c .. format("!message!%s:%s", getOldColour(o, "message"), getOldColour(o, "messageback"));
     c = c .. format("!nick!%s:%s", getOldColour(o, "nick"), getOldColour(o, "nickback"));
-    users[user].colours = c;
+    users[strlower(user)].colours = c;
   end
 end
 

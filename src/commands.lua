@@ -3645,12 +3645,12 @@ function commandLaston(connection, line, params)
     for i = 1, getn(members) do
       if (members[i]) then
         local tmp;
-        if (not users[members[i]]) then
+        if (not users[strlower(members[i])]) then
           tmp = gm(conn, "clastonNoExist");
-        elseif (not users[members[i]].lastLogon) then
+        elseif (not users[strlower(members[i])].lastLogon) then
           tmp = gm(conn, "clastonNever");
         else
-          tmp = users[members[i]].lastLogon;
+          tmp = users[strlower(members[i])].lastLogon;
         end;
         send(format("%-10.10s %-1.1s %s", members[i], "", tmp), conn, S_DONE);
         count = count + 1;
