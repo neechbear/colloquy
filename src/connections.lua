@@ -797,13 +797,25 @@ function userLogon(connection, string)
      initialGroup = "Public";
    end;
 
+--   -- check if the name is at all valid...
+--   for i=1,strlen(punctuation) do
+--     if (strfind(params[1], strsub(punctuation, i, i), 1, 1)) then
+--       conn.socket:send("+++ Invalid user name.\r\n");
+--       return nil;
+--     end;
+--   end;
+
+----------------------------------
+-- nicolaw 2006-05-31
    -- check if the name is at all valid...
-   for i=1,strlen(punctuation) do
+   for i=1,strlen("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789") do
      if (strfind(params[1], strsub(punctuation, i, i), 1, 1)) then
        conn.socket:send("+++ Invalid user name.\r\n");
        return nil;
      end;
    end;
+-- nicolaw 2006-05-31
+----------------------------------
 
    if (strlen(params[1]) < 1) then
      conn.socket:send("+++ Invalid user name.\r\n");
